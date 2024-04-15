@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 9ea96f1748c0bb84d847beafb61f1ae0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - topDoor: {instanceID: 0}
+  - bottomDoor: {instanceID: 0}
+  - leftDoor: {instanceID: 0}
+  - rightDoor: {instanceID: 0}
+  - topDoorBlocker: {instanceID: 0}
+  - bottomDoorBlocker: {instanceID: 0}
+  - leftDoorBlocker: {instanceID: 0}
+  - rightDoorBlocker: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
