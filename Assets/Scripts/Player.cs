@@ -33,13 +33,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        // Move the player
+        rigidBody2D.velocity = movePlayer() * moveSpeed;
+    }
+
+    private Vector2 movePlayer()
+    {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         movement = new Vector2(horizontal, vertical);
-
-        // Move the player
-        rigidBody2D.velocity = movement * moveSpeed;
+        return movement;
     }
     
     void Update()

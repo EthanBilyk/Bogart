@@ -19,8 +19,6 @@ public class RoomGenerator : MonoBehaviour
     
     private int roomSizeX = (int)(20 * ((floorNum + roomNum)/2));
     private int roomSizeY = (int)(20 * ((floorNum + roomNum)/2));
-    private GameObject[] room;
-    [SerializeField, Range(0f, 1f)] private float doorChance = 0.5f;
 
     private void Start()
     {
