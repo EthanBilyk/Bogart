@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
@@ -19,6 +20,7 @@ public class RoomManager : MonoBehaviour
 
     private Queue<Vector2Int> roomQueue = new Queue<Vector2Int>();
     [SerializeField] GameObject playerPrefab;
+    private GameObject playerInstance;
     
     private int[,] roomGrid;
 
@@ -32,6 +34,9 @@ public class RoomManager : MonoBehaviour
 
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
+        
+        Vector3 playerSpawnPosition = GetPositionFromGridIndex(initialRoomIndex);
+        playerInstance = Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
     }
 
     private void spawnPlayer()

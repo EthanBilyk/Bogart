@@ -26,7 +26,9 @@ public class DeathMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         FindObjectOfType<Player>().setAlive(true);
-        FindObjectOfType<Player>().gameOverCanvas.SetActive(false);
+        FindObjectOfType<PlayerMenuObject>().setActive(false);
         FindObjectOfType<Player>().setPaused(false);
     }
+
+    
 }

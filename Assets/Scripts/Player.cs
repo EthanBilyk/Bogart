@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,9 +12,9 @@ public class Player : MonoBehaviour
     private Vector2 movement;
     public GameObject gameOverCanvas;
     
-    [SerializeField] private int hitPoints = 3;
+    [SerializeField] private int hitPoints = 2;
 
-    [SerializeField] private int armor = 1;
+    [SerializeField] private int armor = 0;
     private bool isAlive = true;
     private bool isPaused;
 
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
+        gameOverCanvas = GetComponentInChildren<GameObject>();
+        gameOverCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,7 +43,7 @@ public class Player : MonoBehaviour
     }
     
     void Update()
-    {
+    {   
         if (!isAlive && !isPaused)
         {
             // Pause the game
@@ -118,7 +121,7 @@ public class Player : MonoBehaviour
 
     public Vector2 GetPlayerPosition()
     {
-        return rigidBody2D.position;
+        return this.rigidBody2D.position;
     }
 
     public bool getPaused()
