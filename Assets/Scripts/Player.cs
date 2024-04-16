@@ -102,6 +102,7 @@ public class Player : MonoBehaviour
     public void Heal(int heal)
     {
         hitPoints += heal;
+        Debug.Log("You Healed and are now at " + hitPoints + " HP.");
     }
 
     public void GainArmor(int armorVal)
