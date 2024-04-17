@@ -1,29 +1,62 @@
-using System;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
 public class Pistol : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public Transform bulletSpawn;
     public int speed = 6;
-    private void Start()
-    {
-        bulletPrefab = GetComponent<GameObject>();
-    }
+    public float cooldownTime = 0.5f; // Cooldown time between shots
+    private float baseCooldownTime = 0.5f;
+    private float lastShootTime; // Time when the last shot was fired
+    private float bulletOffsetDistance = 0.6f;
 
     private void FixedUpdate()
     {
+        
+    }
+
+    public void AddPercentAttackSpeed(float attackSpeed)
+    {
+        this.cooldownTime = baseCooldownTime + (attackSpeed * baseCooldownTime);
+    }
+
+    private void Update()
+    {
+        // Check if the player is holding down the fire button
         if (Input.GetButton("Fire1"))
         {
-            Vector3 mousePos = Input.mousePosition;
-            GameObject bullet = Instantiate(bulletPrefab);
-            Physics.IgnoreCollision(bullet.GetComponent<Collider>(), bulletSpawn.parent.GetComponent<Collider>());
-            bullet.transform.position = bulletSpawn.position;
-            Vector3 rotation = bullet.transform.rotation.eulerAngles;
-            bullet.transform.rotation = Quaternion.Euler(rotation.x, transform.eulerAngles.y, rotation.z);
-            bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward * speed, ForceMode.Impulse);
-            StartCoroutine("DestroyProjectile");
+            // Check if enough time has passed since the last shot to allow shooting again
+            if (Time.time - lastShootTime >= cooldownTime)
+            {
+                Shoot(); // Fire a bullet
+                lastShootTime = Time.time; // Update the last shot time
+            }
         }
     }
+    public void Shoot()
+    {
+        // Get the direction from the pistol's position to the mouse cursor
+        Vector3 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+
+        // Calculate the bullet offset based on the direction
+        Vector3 bulletOffset = direction * bulletOffsetDistance;
+
+        // Instantiate the bullet at the pistol's position with the offset
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + bulletOffset, transform.rotation);
+
+        // Get the bullet script component
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+
+        if (bulletScript != null)
+        {
+            // Set the bullet's speed and direction
+            bulletScript.Shoot(speed, transform.right);
+        }
+        else
+        {
+            Debug.LogError("Bullet script component not found!");
+        }
+    }
+
+
 }

@@ -17,6 +17,14 @@ public class Player : MonoBehaviour
     [SerializeField] private int armor = 0;
     private bool isAlive = true;
     private bool isPaused;
+    public Transform hand; // Reference to the hand GameObject where the pistol will be held
+    public GameObject pistolPrefab; // Reference to the pistol prefab
+
+    private GameObject currentPistol; // Reference to the currently held pistol
+
+    private float handOffsetDistance = 1.6f;
+    [SerializeField] private float handOffsetAngle;
+    [SerializeField] private float handRadius;
 
     // There may be a better way to set classes, need to think about this one
     // private int class = 0;
@@ -26,15 +34,79 @@ public class Player : MonoBehaviour
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
+        // Instantiate the pistol and attach it to the hand
+        AttachPistolToHand();
         gameOverCanvas = GetComponentInChildren<GameObject>();
         gameOverCanvas.SetActive(false);
     }
+    
+    void AttachPistolToHand()
+    {
+        // Instantiate the pistol and attach it to the hand
+        currentPistol = Instantiate(pistolPrefab, hand.position, hand.rotation, hand);
+        if (currentPistol != null)
+        {
+            Debug.Log("Pistol attached to hand successfully!");
+        }
+        else
+        {
+            Debug.LogError("Failed to attach pistol to hand!");
+        }
+    }
+
+    void AddPercentAttackSpeed(float attackSpeed)
+    {
+        Pistol pistolscript = currentPistol.GetComponent<Pistol>();
+        pistolscript.AddPercentAttackSpeed(attackSpeed);
+    }
+    
+    void Aim()
+    {
+        // Calculate the angle to rotate the hand towards the mouse cursor
+        Vector3 directionToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+        float angleToMouse = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
+
+        // Rotate the hand towards the mouse cursor
+        hand.rotation = Quaternion.Euler(0, 0, angleToMouse);
+
+        // Calculate the position of the hand around the player at a fixed distance
+        float angleAroundPlayer = angleToMouse + handOffsetAngle; // Add an offset angle if needed
+        Vector3 handPosition = transform.position + Quaternion.Euler(0, 0, angleAroundPlayer) * Vector3.right * handRadius;
+        hand.position = handPosition;
+    }
+
 
     // Update is called once per frame
     private void FixedUpdate()
     {
         // Move the player
         rigidBody2D.velocity = movePlayer() * moveSpeed;
+        hand.position = new Vector3(rigidBody2D.position.x - 0.6f, rigidBody2D.position.y, 0);
+        
+        // Aim the pistol towards the mouse cursor
+        Aim();
+
+        // Fire the pistol when the fire button is pressed
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Fire();
+        }
+    }
+    
+    void Fire()
+    {
+        // Check if the current pistol exists
+        if (currentPistol != null)
+        {
+            // Get the pistol's script component
+            Pistol pistol = currentPistol.GetComponent<Pistol>();
+
+            // Check if the pistol script exists and fire the pistol
+            if (pistol != null)
+            {
+                pistol.Shoot();
+            }
+        }
     }
 
     private Vector2 movePlayer()
@@ -126,7 +198,7 @@ public class Player : MonoBehaviour
 
     public Vector2 GetPlayerPosition()
     {
-        return this.rigidBody2D.position;
+        return new Vector2(rigidBody2D.position.x, rigidBody2D.position.y);
     }
 
     public bool getPaused()

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Environment
   - DeathMenu
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 370950065410679369}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  hitPoints: 2
 --- !u!1 &8480704275802839662
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ GameObject:
   - component: {fileID: 2091079443487568429}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

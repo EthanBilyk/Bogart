@@ -17,8 +17,8 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private static int floorNum = 1;
     [SerializeField] private static int roomNum = 1;
     
-    private int roomSizeX = (int)(20 * ((floorNum + roomNum)/2));
-    private int roomSizeY = (int)(20 * ((floorNum + roomNum)/2));
+    [SerializeField] private int roomSizeX = (int)(20 * ((floorNum + roomNum)/2));
+    [SerializeField] private int roomSizeY = (int)(20 * ((floorNum + roomNum)/2));
 
     private void Start()
     {
