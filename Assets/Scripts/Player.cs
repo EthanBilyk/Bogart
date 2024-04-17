@@ -18,11 +18,11 @@ public class Player : MonoBehaviour
     private bool isAlive = true;
     private bool isPaused;
     public Transform hand; // Reference to the hand GameObject where the pistol will be held
-    public GameObject pistolPrefab; // Reference to the pistol prefab
-
-    private GameObject currentPistol; // Reference to the currently held pistol
+    public GameObject weaponPrefab; // Reference to the weapon prefab
+    private GameObject currentWeapon; // Reference to the currently held weapon
 
     private float handOffsetDistance = 1.6f;
+    public float weaponRadius = 1.6f; // Radius of the weapon rotation around the player
     [SerializeField] private float handOffsetAngle;
     [SerializeField] private float handRadius;
 
@@ -35,29 +35,29 @@ public class Player : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
         // Instantiate the pistol and attach it to the hand
-        AttachPistolToHand();
+        AttachWeaponToHand();
         gameOverCanvas = GetComponentInChildren<GameObject>();
         gameOverCanvas.SetActive(false);
     }
     
-    void AttachPistolToHand()
+    void AttachWeaponToHand()
     {
         // Instantiate the pistol and attach it to the hand
-        currentPistol = Instantiate(pistolPrefab, hand.position, hand.rotation, hand);
-        if (currentPistol != null)
+        currentWeapon = Instantiate(weaponPrefab, hand.position, hand.rotation, hand);
+        if (currentWeapon != null)
         {
-            Debug.Log("Pistol attached to hand successfully!");
+            Debug.Log("Weapon attached to hand successfully!");
         }
         else
         {
-            Debug.LogError("Failed to attach pistol to hand!");
+            Debug.LogError("Failed to attach weapon to hand!");
         }
     }
 
-    void AddPercentAttackSpeed(float attackSpeed)
+    public void AddPercentAttackSpeed(float attackSpeed)
     {
-        Pistol pistolscript = currentPistol.GetComponent<Pistol>();
-        pistolscript.AddPercentAttackSpeed(attackSpeed);
+        Pistol pistolScript = currentWeapon.GetComponent<Pistol>();
+        pistolScript.AddPercentAttackSpeed(attackSpeed);
     }
     
     void Aim()
@@ -96,15 +96,19 @@ public class Player : MonoBehaviour
     void Fire()
     {
         // Check if the current pistol exists
-        if (currentPistol != null)
+        if (currentWeapon != null)
         {
             // Get the pistol's script component
-            Pistol pistol = currentPistol.GetComponent<Pistol>();
+            Weapon weapon = currentWeapon.GetComponent<Weapon>();
 
             // Check if the pistol script exists and fire the pistol
-            if (pistol != null)
+            if (weapon != null)
             {
-                pistol.Shoot();
+                // Get the mouse position in world coordinates
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                // Pass the mouse position to the Shoot method
+                weapon.Shoot(mousePosition);
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackSpeedPickup : MonoBehaviour
 {
-    private int _value = .1;
+    private float value = .1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,8 @@ public class AttackSpeedPickup : MonoBehaviour
         Debug.Log("Hit the AttackSpeedPickup");
         if (other.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<Player>().AddPercentAttackSpeed(_value);
+            Player playerScript = other.gameObject.GetComponent<Player>();
+            playerScript.AddPercentAttackSpeed(value);
             Destroy(gameObject);
         }
     }

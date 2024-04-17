@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3742548348872587870}
+  - component: {fileID: 574925653538371174}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -32,6 +33,20 @@ Transform:
   - {fileID: 5082536666906155566}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &574925653538371174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4423454729301707401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3654b8bb60740242bdb4b8730908ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 338451442919283894, guid: 8de7816950af21d40923a77228bcebd2, type: 3}
+  cooldownTime: 0.5
 --- !u!1 &6820560391162408534
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +57,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5082536666906155566}
   - component: {fileID: 7631533232933471103}
-  - component: {fileID: 3494767826823172953}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -117,17 +131,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3494767826823172953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6820560391162408534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c3e5d09ccfc5fe45894c0a7ab9f2a3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 338451442919283894, guid: 8de7816950af21d40923a77228bcebd2, type: 3}
-  speed: 6

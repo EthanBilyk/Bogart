@@ -176,7 +176,8 @@ MonoBehaviour:
   hitPoints: 2
   armor: 0
   hand: {fileID: 3253490613997036483}
-  pistolPrefab: {fileID: 4423454729301707401, guid: 51e7f7c40ebae124384bd73c2cffb82a, type: 3}
+  weaponPrefab: {fileID: 4423454729301707401, guid: 51e7f7c40ebae124384bd73c2cffb82a, type: 3}
+  weaponRadius: 1.6
   handOffsetAngle: 0
   handRadius: 1
 --- !u!1 &1445498715571699848
