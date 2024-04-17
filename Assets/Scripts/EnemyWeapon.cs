@@ -7,6 +7,7 @@ public class EnemyWeapon : MonoBehaviour
 {
     [SerializeField] public GameObject projectilePrefab;
     [SerializeField] public float cooldownTime = 0.5f;
+    [SerializeField] public float spawnDistance = 1.0f;
     private float lastShootTime;
     private float range = 10f;
 
@@ -46,7 +47,7 @@ public class EnemyWeapon : MonoBehaviour
         if (projectileComponent != null)
         {
             // Set the initial velocity of the projectile based on the direction
-            projectileComponent.Move(targetPosition);
+            projectileComponent.Move(targetPosition*spawnDistance);
             lastShootTime = Time.time;
         }
         else

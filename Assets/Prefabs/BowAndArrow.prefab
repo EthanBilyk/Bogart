@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 396958356051665782}
   - component: {fileID: 856986241713199791}
-  - component: {fileID: 6133765337129358421}
   - component: {fileID: 8460580593121472491}
   m_Layer: 0
   m_Name: BowAndArrow
@@ -28,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5379913715361380561}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.34, y: -0.02, z: 0.06898504}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -87,21 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6133765337129358421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5379913715361380561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21a880c5c567e48448c36e6689b47a0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 6184860907371640526, guid: 7dceddd0ff5ee484a934f4a49b63e0bd, type: 3}
-  speed: 4
-  cooldownTime: 0.8
 --- !u!114 &8460580593121472491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6184860907371640526, guid: 7dceddd0ff5ee484a934f4a49b63e0bd, type: 3}
   cooldownTime: 0.5
+  spawnDistance: 1
 --- !u!1001 &7255322230315886308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -188,6 +173,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6184860907371640526, guid: 7dceddd0ff5ee484a934f4a49b63e0bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1481618187510983260}
+    - targetCorrespondingSourceObject: {fileID: 6184860907371640526, guid: 7dceddd0ff5ee484a934f4a49b63e0bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1271557683334200677}
+    - targetCorrespondingSourceObject: {fileID: 6184860907371640526, guid: 7dceddd0ff5ee484a934f4a49b63e0bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4687951163902673384}
   m_SourcePrefab: {fileID: 100100000, guid: 7dceddd0ff5ee484a934f4a49b63e0bd, type: 3}
 --- !u!4 &2111046832841552549 stripped
 Transform:
@@ -212,3 +203,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+--- !u!70 &1271557683334200677
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3559285273645748266}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.05999999, y: 0.15999998}
+  m_Size: {x: 0.2, y: 0.1}
+  m_Direction: 1
+--- !u!50 &4687951163902673384
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3559285273645748266}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0.5
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
