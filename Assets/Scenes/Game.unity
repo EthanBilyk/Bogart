@@ -152,12 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca366cd4d5f5e54581699386cef9816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 4609299636867025324, guid: 1d6c428cf557bdc40aa7bfc4c350204c, type: 3}
-  maxRooms: 15
-  minRooms: 8
-  gridSizeX: 15
-  gridSizeY: 15
-  playerPrefab: {fileID: 4068425626436448912, guid: 1600169302415434d9eaa05438589a27, type: 3}
 --- !u!4 &276597698
 Transform:
   m_ObjectHideFlags: 0
