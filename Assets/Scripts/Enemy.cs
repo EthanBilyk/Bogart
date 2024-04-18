@@ -15,8 +15,8 @@ public class Enemy : MonoBehaviour
     
     private float handOffsetDistance = 1.6f;
     public float weaponRadius = 1.6f; // Radius of the weapon rotation around the player
-    [SerializeField] private float handOffsetAngle;
-    [SerializeField] private float handRadius;
+    [SerializeField] private float handOffsetAngle = 1.6f;
+    [SerializeField] private float handRadius = 1.6f;
 
     void Start()
     {
@@ -43,16 +43,18 @@ public class Enemy : MonoBehaviour
         if (isAlive == false)
         {
             Destroy(gameObject);
+            Destroy(currentWeapon.gameObject);
         }
     }
 
     private void FixedUpdate()
     {
         // Get the position of the player
-        Vector2 playerPosition = player.transform.position;
+        Player Player = FindObjectOfType<Player>();
+        Vector2 playerRb = Player.GetComponent<Rigidbody2D>().position;
 
         // Calculate the direction towards the player
-        Vector2 direction = (playerPosition - (Vector2)transform.position).normalized;
+        Vector2 direction = (playerRb - (Vector2)transform.position).normalized;
 
         // Move towards the player
         rigidBody2D.velocity = direction * moveSpeed;
@@ -65,6 +67,8 @@ public class Enemy : MonoBehaviour
     {
         // Calculate the angle to rotate the hand towards the player
         float angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Rotate the hand towards the player
         hand.rotation = Quaternion.Euler(0, 0, angleToPlayer);
 
         // Calculate the position of the hand around the player at a fixed distance
@@ -72,18 +76,21 @@ public class Enemy : MonoBehaviour
         Vector3 handPosition = transform.position + Quaternion.Euler(0, 0, angleAroundPlayer) * Vector3.right * handRadius;
         hand.position = handPosition;
 
+        EnemyWeapon weapon = currentWeapon.GetComponent<EnemyWeapon>();
+
         // Shoot towards the player
-        Weapon weapon = currentWeapon.GetComponent<Weapon>();
         weapon.Shoot(direction);
     }
     
     public void TakeDamage()
     {
             hitPoints -= 1;
-        if (hitPoints <= 0)
-            isAlive = false;
-        
-        Debug.Log("Enemy damaged and is now at " + hitPoints + " HP.");
+            if (hitPoints <= 0)
+            {
+                isAlive = false;
+            }
+
+            Debug.Log("Enemy damaged and is now at " + hitPoints + " HP.");
     }
 
     void OnCollisionEnter2D(Collision2D collision)

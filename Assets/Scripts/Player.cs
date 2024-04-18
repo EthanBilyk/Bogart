@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rigidBody2D;
     private BoxCollider2D collider;
+    
     [SerializeField] private float moveSpeed = 7f;
     private Vector2 movement;
     public GameObject gameOverCanvas;
@@ -190,7 +192,7 @@ public class Player : MonoBehaviour
         armor += armorVal;
     }
 
-    public float GetHealth()
+    public int GetHealth()
     {
         return hitPoints;
     }

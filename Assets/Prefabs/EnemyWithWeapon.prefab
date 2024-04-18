@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 176711418091177214}
   m_Layer: 0
-  m_Name: EnemyArcher
+  m_Name: EnemyWithWeapon
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   moveSpeed: 2.5
   hitPoints: 2
   hand: {fileID: 6323346476603005569}
-  weaponPrefab: {fileID: 5379913715361380561, guid: f93c1c5d11b7f1d49a2d637615d237d2, type: 3}
+  weaponPrefab: {fileID: 2813955776799172192, guid: f93c1c5d11b7f1d49a2d637615d237d2, type: 3}
   weaponRadius: 1.6
   handOffsetAngle: 0
   handRadius: 0

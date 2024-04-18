@@ -22,6 +22,7 @@ public class Weapon : MonoBehaviour
 
         // Access the Projectile component of the instantiated projectile
         Projectile projectileComponent = projectile.GetComponent<Projectile>();
+        
 
         if (projectileComponent != null)
         {

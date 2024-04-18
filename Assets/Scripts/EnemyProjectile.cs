@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] public float speed = 10f;
+    private Rigidbody2D rb2d;
     private Vector3 direction;
+    private float range = 10f;
 
     private void Update()
     {
@@ -22,44 +25,31 @@ public class EnemyProjectile : MonoBehaviour
     
     private void Start()
     {
-        // Get the mouse position in world coordinates
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Call the Move method with the mouse position
-        Move(mousePosition);
+        GameObject player = FindObjectOfType<GameObject>();
+        Player script = player.gameObject.GetComponent<Player>();
+        Move(new Vector3(script.GetPlayerPosition().x, script.GetPlayerPosition().y, 0));
     }
-
+    
     public void Move(Vector3 targetPosition)
     {
         // Calculate the direction towards the target position
         Vector2 direction = (targetPosition - transform.position).normalized;
+        rb2d = GetComponent<Rigidbody2D>();
 
         // Calculate the velocity based on the direction and speed
         Vector2 velocity = direction * speed;
 
-        // Get the rigidbody component of the projectile
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-        if (rb != null)
+        if (rb2d != null)
         {
             // Apply the velocity to the rigidbody
-            rb.velocity = velocity;
+            rb2d.velocity = velocity;
         }
         else
         {
             Debug.LogError("Rigidbody component not found on the projectile!");
         }
     }
-
-    public void Init(Vector3 direction)
-    {
-        // Set initial velocity based on direction
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.velocity = direction * speed;
-        }
-    }
+    
     
     private void OnTriggerEnter2D(Collider2D other)
     {

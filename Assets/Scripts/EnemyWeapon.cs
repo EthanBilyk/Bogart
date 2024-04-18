@@ -6,10 +6,10 @@ using UnityEngine;
 public class EnemyWeapon : MonoBehaviour
 {
     [SerializeField] public GameObject projectilePrefab;
-    [SerializeField] public float cooldownTime = 0.5f;
+    [SerializeField] public float cooldownTime = 1.2f;
     [SerializeField] public float spawnDistance = 1.0f;
     private float lastShootTime;
-    private float range = 10f;
+    [SerializeField] private float range = 10f;
 
     private void Update()
     {
@@ -36,18 +36,19 @@ public class EnemyWeapon : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector3 targetPosition)
+    public void Shoot(Vector2 targetPosition)
     {
         // Instantiate the projectile at the weapon's position and rotation
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        Rigidbody2D projectileRD = projectile.GetComponent<Rigidbody2D>();
 
         // Access the Projectile component of the instantiated projectile
-        Projectile projectileComponent = projectile.GetComponent<Projectile>();
+        EnemyProjectile projectileComponent = projectile.GetComponent<EnemyProjectile>();
 
         if (projectileComponent != null)
         {
             // Set the initial velocity of the projectile based on the direction
-            projectileComponent.Move(targetPosition*spawnDistance);
+            projectileComponent.Shoot(projectileComponent.speed, targetPosition*spawnDistance);
             lastShootTime = Time.time;
         }
         else
