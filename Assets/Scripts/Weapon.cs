@@ -35,4 +35,13 @@ public class Weapon : MonoBehaviour
             Debug.LogError("Projectile component not found on instantiated projectile!");
         }
     }
+    public void AddPercentAttackSpeed(float attackSpeed)
+    {
+        // Calculate the percentage change in attack speed
+        float percentChange = 1 + attackSpeed; // If attackSpeed is 0.1, percentChange will be 1.1
+
+        // Adjust the cooldown time proportionally
+        cooldownTime /= percentChange;
+        Debug.LogError("Attack speed is " + cooldownTime);
+    }
 }

@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    [SerializeField] public float speed = 10f;
     private Rigidbody2D rb2d;
+    private float speed;
     private Vector3 direction;
     private float range = 10f;
 
@@ -16,28 +16,37 @@ public class EnemyProjectile : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
     
-    public void Shoot(float speed, Vector3 direction)
-    {
-        this.speed = speed;
-        this.direction = direction;
-
-    }
     
     private void Start()
     {
+        rb2d = GetComponent<Rigidbody2D>();
         GameObject player = FindObjectOfType<GameObject>();
         Player script = player.gameObject.GetComponent<Player>();
-        Move(new Vector3(script.GetPlayerPosition().x, script.GetPlayerPosition().y, 0));
     }
+    
+    public void Shoot(float speed, Vector3 direction)
+    {
+        if (rb2d == null)
+            rb2d = GetComponent<Rigidbody2D>();
+        
+        // Calculate the velocity based on the direction and speed
+        this.speed = speed;
+        this.direction = direction;
+        Vector2 velocity = direction.normalized * speed;
+
+        // Apply the velocity to the Rigidbody2D
+        rb2d.velocity = velocity;
+
+    }
+    
     
     public void Move(Vector3 targetPosition)
     {
         // Calculate the direction towards the target position
         Vector2 direction = (targetPosition - transform.position).normalized;
-        rb2d = GetComponent<Rigidbody2D>();
 
         // Calculate the velocity based on the direction and speed
-        Vector2 velocity = direction * speed;
+        Vector3 velocity = direction * speed;
 
         if (rb2d != null)
         {
@@ -58,8 +67,7 @@ public class EnemyProjectile : MonoBehaviour
             GameObject player = other.gameObject;
             Player playerScript = player.GetComponent<Player>();
             playerScript.TakeDamage();
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
-        
     }
 }

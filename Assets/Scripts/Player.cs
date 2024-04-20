@@ -58,8 +58,8 @@ public class Player : MonoBehaviour
 
     public void AddPercentAttackSpeed(float attackSpeed)
     {
-        Pistol pistolScript = currentWeapon.GetComponent<Pistol>();
-        pistolScript.AddPercentAttackSpeed(attackSpeed);
+        Weapon weaponScript = currentWeapon.GetComponent<Weapon>();
+        weaponScript.AddPercentAttackSpeed(attackSpeed);
     }
     
     void Aim()

@@ -60,10 +60,20 @@ public class Enemy : MonoBehaviour
         rigidBody2D.velocity = direction * moveSpeed;
 
         // Aim and shoot towards the player
-        AimAndShoot(direction);
+        Aim(direction);
+        // Rotate the bow based on the hand's rotation
+        RotateBow();
+        
+        
     }
     
-    void AimAndShoot(Vector2 direction)
+    void RotateBow()
+    {
+        // Copy the hand's rotation to the bow's rotation
+        hand.transform.GetChild(0).rotation = hand.rotation;
+    }
+    
+    void Aim(Vector2 direction)
     {
         // Calculate the angle to rotate the hand towards the player
         float angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -75,12 +85,8 @@ public class Enemy : MonoBehaviour
         float angleAroundPlayer = angleToPlayer + handOffsetAngle;
         Vector3 handPosition = transform.position + Quaternion.Euler(0, 0, angleAroundPlayer) * Vector3.right * handRadius;
         hand.position = handPosition;
-
-        EnemyWeapon weapon = currentWeapon.GetComponent<EnemyWeapon>();
-
-        // Shoot towards the player
-        weapon.Shoot(direction);
     }
+    
     
     public void TakeDamage()
     {

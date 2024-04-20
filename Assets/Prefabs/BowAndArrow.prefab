@@ -99,8 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6184860907371640526, guid: 7dceddd0ff5ee484a934f4a49b63e0bd, type: 3}
-  cooldownTime: 0.5
-  spawnDistance: 1
+  cooldownTime: 1.2
+  spawnDistance: 0
+  range: 10
+  speed: 10
 --- !u!1001 &654275369148430421
 PrefabInstance:
   m_ObjectHideFlags: 0
