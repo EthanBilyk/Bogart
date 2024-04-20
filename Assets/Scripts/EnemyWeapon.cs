@@ -47,13 +47,12 @@ public class EnemyWeapon : MonoBehaviour
 
     public void Shoot(Vector2 direction)
     {
-        GameObject obj = GameObject.FindWithTag("Enemy");
-        Enemy enemyScript = obj.GetComponent<Enemy>();
-        Vector3 handPosition = enemyScript.hand.position;
+        // GameObject obj = GetComponentInParent<GameObject>();
+        // Vector3 handPosition = obj.gameObject.GetComponentInParent<Enemy>().hand.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         
         // Instantiate the projectile at the hand position and rotation
-        GameObject projectile = Instantiate(projectilePrefab, handPosition, Quaternion.Euler(0f, 0f, angle));
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0f, 0f, angle));
         
 
         // Access the Projectile component of the instantiated projectile

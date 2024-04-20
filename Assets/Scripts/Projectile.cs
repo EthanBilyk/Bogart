@@ -34,9 +34,10 @@ public class Projectile : MonoBehaviour
     {
         // Calculate the direction towards the target position
         Vector2 direction = (targetPosition - transform.position).normalized;
+        Debug.Log("Projectile has direction: " + direction + ", and speed: " + speed);
 
         // Calculate the velocity based on the direction and speed
-        Vector2 velocity = direction * speed;
+        Vector2 velocity = direction.normalized * speed;
 
         // Get the rigidbody component of the projectile
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -69,8 +70,9 @@ public class Projectile : MonoBehaviour
             GameObject enemy = other.gameObject;
             Enemy enemyScript = enemy.GetComponent<Enemy>();
             enemyScript.TakeDamage();
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
-        
+        else if(other.CompareTag("Environment"))
+            Destroy(gameObject);
     }
 }
