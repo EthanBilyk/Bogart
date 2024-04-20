@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d59b08c54729ad4408a431a3c6bca938
+guid: 6a97e260e4a124b42aa0a7a0ef2b928d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Fox
+  - name: Ghost
     originalName: 
-    pivot: {x: 0.5185185, y: -0.375}
+    pivot: {x: 0.41463414, y: -0.08928572}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 54
-      height: 40
-    spriteID: 2fff374dc425e3d4598c76251167727b
+      width: 41
+      height: 56
+    spriteID: 898ff51551fd16243b0a175a8b9f9023
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,51 +141,23 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Fox_Frame_1
-    originalName: 
-    pivot: {x: 0.5185185, y: -0.375}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 52
-      width: 54
-      height: 40
-    spriteID: 64c6fe63f87805f478c8a53e23527aba
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 52}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -468490359
-    name: Fox
+    guid: -1798907869
+    name: Ghost
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Fox_Frame_0
+    - name: Ghost
       frameIndex: 0
       cellRect:
-        x: 4
-        y: 15
-        width: 54
-        height: 40
-      spriteId: 2fff374dc425e3d4598c76251167727b
-    - name: Fox_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 4
-        y: 15
-        width: 54
-        height: 40
-      spriteId: 64c6fe63f87805f478c8a53e23527aba
+        x: 15
+        y: 5
+        width: 41
+        height: 56
+      spriteId: 898ff51551fd16243b0a175a8b9f9023
     linkedCells: []
     parentIndex: -1
   platformSettings: []

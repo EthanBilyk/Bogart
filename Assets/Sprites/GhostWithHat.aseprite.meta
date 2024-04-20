@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d59b08c54729ad4408a431a3c6bca938
+guid: 5c034dd16a19b68469a0c39de272468d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Fox
+  - name: GhostWithHat
     originalName: 
-    pivot: {x: 0.5185185, y: -0.375}
+    pivot: {x: 0.5277778, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 54
-      height: 40
-    spriteID: 2fff374dc425e3d4598c76251167727b
+      width: 36
+      height: 63
+    spriteID: 7c98c5e8747d22e4b99f9b801d6b84ea
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,51 +141,23 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Fox_Frame_1
-    originalName: 
-    pivot: {x: 0.5185185, y: -0.375}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 52
-      width: 54
-      height: 40
-    spriteID: 64c6fe63f87805f478c8a53e23527aba
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 52}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -468490359
-    name: Fox
+    guid: -479266618
+    name: GhostWithHat
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Fox_Frame_0
+    - name: GhostWithHat
       frameIndex: 0
       cellRect:
-        x: 4
-        y: 15
-        width: 54
-        height: 40
-      spriteId: 2fff374dc425e3d4598c76251167727b
-    - name: Fox_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 4
-        y: 15
-        width: 54
-        height: 40
-      spriteId: 64c6fe63f87805f478c8a53e23527aba
+        x: 13
+        y: 0
+        width: 36
+        height: 63
+      spriteId: 7c98c5e8747d22e4b99f9b801d6b84ea
     linkedCells: []
     parentIndex: -1
   platformSettings: []
