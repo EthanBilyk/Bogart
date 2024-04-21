@@ -68,7 +68,7 @@ public class Projectile : MonoBehaviour
         if(other.CompareTag("Enemy"))
         {
             GameObject enemy = other.gameObject;
-            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            Skeleton enemyScript = enemy.GetComponent<Skeleton>();
             enemyScript.TakeDamage();
             Destroy(gameObject);
         }

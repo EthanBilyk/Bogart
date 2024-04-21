@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Skeleton : MonoBehaviour
 {
     private Rigidbody2D rigidBody2D;
     private GameObject player;
