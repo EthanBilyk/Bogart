@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Boar : Enemy
 { 
-        private float initialSpeed = 10f; // Initial speed of the boar
-        private float maxSpeed = 100f; // Maximum speed of the boar
-        private float acceleration = 4f; // Acceleration rate of the boar
+        private float initialSpeed = 20f; // Initial speed of the boar
+        private float maxSpeed = 200f; // Maximum speed of the boar
+        private float acceleration = 10f; // Acceleration rate of the boar
         private float currentSpeed; // Current speed of the boar
         [SerializeField] private Rigidbody2D rb2d;
         [SerializeField] private Collider2D collider;
@@ -44,13 +44,13 @@ public class Boar : Enemy
         {
                 if (isStunned)
                 {
+                        currentSpeed = initialSpeed;
                         // Check if stun duration has elapsed
                         if (Time.time >= stunEndTime)
                         {
                                 // End stun
                                 isStunned = false;
                                 isCharging = false;
-                                currentSpeed = initialSpeed;
                         }
                 }
                 else if (!isCharging)
@@ -67,6 +67,7 @@ public class Boar : Enemy
                         }
                 }
 
+                
                 MoveAttack();
         }
 
@@ -75,7 +76,8 @@ public class Boar : Enemy
                 if (isCharging && !isStunned)
                 {
                         // Gradually increase the speed until it reaches the maximum speed
-                        currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.fixedDeltaTime, maxSpeed);
+                        currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
+                        Debug.Log("speed: " + currentSpeed);
 
                         // Move the boar in the charge direction with the current speed
                         rb2d.velocity = chargeDirection * currentSpeed;
@@ -83,6 +85,11 @@ public class Boar : Enemy
                 else if(Vector2.Distance(transform.position, player.position) <= attackRange && !isStunned)
                 {
                         rb2d.velocity = (player.position - transform.position).normalized * initialSpeed;
+                }
+                else if (isStunned)
+                {
+                        // Reset speed to initial speed
+                        currentSpeed = initialSpeed;
                 }
                 else
                 {
