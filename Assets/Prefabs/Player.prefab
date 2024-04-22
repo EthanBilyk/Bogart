@@ -729,6 +729,7 @@ MonoBehaviour:
   moveSpeed: 7
   gameOverCanvas: {fileID: 6327792716580621929}
   hitPoints: 2
+  maxHitPoints: 3
   armor: 0
   hand: {fileID: 3253490613997036483}
   weaponPrefab: {fileID: 4423454729301707401, guid: 51e7f7c40ebae124384bd73c2cffb82a, type: 3}
@@ -1532,6 +1533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartPrefab: {fileID: 630303072144304489, guid: 1f773e7b307b6504d9cdac78f79b08ba, type: 3}
+  depletedHeartPrefab: {fileID: 630303072144304489, guid: 5b446be53230a63418ac913a2bc4b536, type: 3}
   playerUI: {fileID: 5366495049560555133}
   player: {fileID: 0}
 --- !u!1 &7543194784554549532

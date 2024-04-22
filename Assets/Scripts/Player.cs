@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public GameObject gameOverCanvas;
     
     [SerializeField] private int hitPoints = 2;
+    [SerializeField] private int maxHitPoints = 3;
 
     [SerializeField] private int armor = 0;
     private bool isAlive = true;
@@ -27,6 +28,10 @@ public class Player : MonoBehaviour
     public float weaponRadius = 1.6f; // Radius of the weapon rotation around the player
     [SerializeField] private float handOffsetAngle;
     [SerializeField] private float handRadius;
+    
+    private bool isInvincible = false; // Flag to indicate if the player is currently invincible
+    private float invincibilityDuration = 1f; // Duration of invincibility frames in seconds
+    private float invincibilityEndTime; // Time when invincibility frames end
 
     // There may be a better way to set classes, need to think about this one
     // private int class = 0;
@@ -135,6 +140,13 @@ public class Player : MonoBehaviour
             // Activate the game over canvas
             gameOverCanvas.SetActive(true);
         }
+        
+        if (isInvincible && Time.time >= invincibilityEndTime)
+        {
+            // End invincibility frames
+            isInvincible = false;
+            // Implement any visual feedback to indicate invincibility has ended
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -167,24 +179,46 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
-        if (armor > 0)
+        if (!isInvincible) // Check if the player is not currently invincible
         {
-            armor -= 1;
+            if (armor > 0)
+            {
+                armor -= 1;
+            }
+            else
+            {
+                hitPoints -= 1;
+            }
+            if (hitPoints <= 0)
+                isAlive = false;
+
+            Debug.Log("You took damage and are now at " + hitPoints + " HP.");
+
+            // Start invincibility frames
+            StartInvincibility();
         }
-        else
-        {
-            hitPoints -= 1;
-        }
-        if (hitPoints <= 0)
-            isAlive = false;
-        
-        Debug.Log("You took damage and are now at " + hitPoints + " HP.");
+    }
+    
+    private void StartInvincibility()
+    {
+        isInvincible = true;
+        invincibilityEndTime = Time.time + invincibilityDuration;
+        // Implement any visual feedback here (e.g., flashing)
     }
 
     public void Heal(int heal)
     {
-        hitPoints += heal;
-        Debug.Log("You Healed and are now at " + hitPoints + " HP.");
+        if (hitPoints < maxHitPoints)
+        {
+            hitPoints += heal;
+            Debug.Log("You Healed and are now at " + hitPoints + " HP.");
+        }
+    }
+    
+    public void increaseHP(int hp)
+    {
+        maxHitPoints += hp;
+        Debug.Log("You increased your max HP and are now at " + maxHitPoints + " HP.");
     }
 
     public void GainArmor(int armorVal)
@@ -195,6 +229,11 @@ public class Player : MonoBehaviour
     public int GetHealth()
     {
         return hitPoints;
+    }
+    
+    public int GetMaxHealth()
+    {
+        return maxHitPoints;
     }
 
     public int GetArmor()

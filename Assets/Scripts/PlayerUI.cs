@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
     public GameObject heartPrefab;
+    public GameObject depletedHeartPrefab;
     public Canvas playerUI; // Reference to the canvas GameObject in the Unity editor
 
     public Player player;
     private int hp;
+    private int maxHP;
 
     void Start()
     {
@@ -38,11 +40,13 @@ public class PlayerUI : MonoBehaviour
         }
 
         hp = player.GetHealth();
+        maxHP = player.GetMaxHealth();
         // Instantiate heart images based on player's health
-        for (int i = 0; i < hp; i++)
+        for (int i = 0; i < maxHP; i++)
         {
-            // Instantiate the heart prefab as a child of the canvas
-            GameObject heart = Instantiate(heartPrefab, playerUI.transform);
+            // Instantiate the appropriate heart prefab as a child of the canvas
+            GameObject heartPrefabToUse = (i < hp) ? heartPrefab : depletedHeartPrefab;
+            GameObject heart = Instantiate(heartPrefabToUse, playerUI.transform);
 
             // Ensure the heart maintains the layout spacing
             LayoutElement layoutElement = heart.AddComponent<LayoutElement>();

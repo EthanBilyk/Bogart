@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7156758950327594640}
   - component: {fileID: 5213056488482857376}
   - component: {fileID: 8286582703009616113}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
-  hitPoints: 2
   hand: {fileID: 8092558637365039764}
   weaponPrefab: {fileID: 2813955776799172192, guid: f93c1c5d11b7f1d49a2d637615d237d2, type: 3}
   weaponRadius: 1.6
@@ -188,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8092558637365039764}
   - component: {fileID: 3847693075704218824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hand
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -271,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7274068617072287920}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}

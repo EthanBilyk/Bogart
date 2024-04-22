@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] public float speed = 10f;
     private Vector3 direction;
+    [SerializeField] public float damage;
 
     private void Update()
     {
@@ -68,8 +69,8 @@ public class Projectile : MonoBehaviour
         if(other.CompareTag("Enemy"))
         {
             GameObject enemy = other.gameObject;
-            Skeleton enemyScript = enemy.GetComponent<Skeleton>();
-            enemyScript.TakeDamage();
+            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            enemyScript.TakeDamage(damage);
             Destroy(gameObject);
         }
         else if(other.CompareTag("Environment"))

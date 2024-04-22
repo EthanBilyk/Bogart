@@ -1,14 +1,11 @@
 using System;
 using UnityEngine;
 
-public class Skeleton : MonoBehaviour
+public class Skeleton : Enemy
 {
     private Rigidbody2D rigidBody2D;
     private GameObject player;
     [SerializeField] private float moveSpeed = 2.5f;
-    
-    [SerializeField] private int hitPoints = 2;
-    private bool isAlive = true;
     public Transform hand;
     public GameObject weaponPrefab; // Reference to the weapon prefab
     private GameObject currentWeapon; // Reference to the currently held weapon
@@ -20,6 +17,10 @@ public class Skeleton : MonoBehaviour
 
     void Start()
     {
+        base.Start(); // Call base class Start method if needed
+        // Additional initialization code specific to Skeleton
+        base.hitPoints = 40;
+        base.isAlive = true;
         rigidBody2D = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         AttachWeaponToHand();
@@ -42,8 +43,7 @@ public class Skeleton : MonoBehaviour
     {
         if (isAlive == false)
         {
-            Destroy(gameObject);
-            Destroy(currentWeapon.gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 
@@ -87,17 +87,6 @@ public class Skeleton : MonoBehaviour
         hand.position = handPosition;
     }
     
-    
-    public void TakeDamage()
-    {
-            hitPoints -= 1;
-            if (hitPoints <= 0)
-            {
-                isAlive = false;
-            }
-
-            Debug.Log("Enemy damaged and is now at " + hitPoints + " HP.");
-    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {

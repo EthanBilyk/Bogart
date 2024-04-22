@@ -3,10 +3,9 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Boar : MonoBehaviour
+public class Boar : Enemy
 { 
-        private int hp = 200; 
-        private float initialSpeed = 20f; // Initial speed of the boar
+        private float initialSpeed = 10f; // Initial speed of the boar
         private float maxSpeed = 100f; // Maximum speed of the boar
         private float acceleration = 4f; // Acceleration rate of the boar
         private float currentSpeed; // Current speed of the boar
@@ -22,6 +21,10 @@ public class Boar : MonoBehaviour
         private float stunEndTime; // Time when the stun ends
         private void Start()
         {
+                base.Start(); // Call base class Start method if needed
+                // Additional initialization code specific to Boar
+                base.hitPoints = 200;
+                base.isAlive = true;
                 rb2d = GetComponent<Rigidbody2D>();
                 collider = GetComponent<Collider2D>();
                 player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -33,7 +36,9 @@ public class Boar : MonoBehaviour
         {
                 if(!player) 
                         player = GameObject.FindGameObjectWithTag("Player").transform;
-            
+                if (!isAlive)
+                        Die();
+
         }
 
         private void FixedUpdate()
@@ -68,21 +73,22 @@ public class Boar : MonoBehaviour
 
         private void MoveAttack()
         {
-                if (isCharging)
+                if (isCharging && !isStunned)
                 {
-                        Debug.Log("Charging");
                         // Gradually increase the speed until it reaches the maximum speed
                         currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.fixedDeltaTime, maxSpeed);
 
                         // Move the boar in the charge direction with the current speed
                         rb2d.velocity = chargeDirection * currentSpeed;
-
-                        Debug.Log("Velocity: " + rb2d.velocity); // Check if velocity is changing
+                }
+                else if(Vector2.Distance(transform.position, player.position) <= attackRange && !isStunned)
+                {
+                        rb2d.velocity = (player.position - transform.position).normalized * initialSpeed;
                 }
                 else
                 {
                         // If not charging, stop the boar
-                        rb2d.velocity = Vector2.zero;
+                        rb2d.velocity = Vector2.zero;    
                 }
         }
         
@@ -90,15 +96,25 @@ public class Boar : MonoBehaviour
         public void StartCharge()
         {
                 isCharging = true;
+                Debug.Log("Charging");
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-                // If the boar collides with the environment and it's not already stunned
-                isCharging = false;
-                rb2d.velocity = Vector2.zero;
-                stunEndTime = Time.time + stunDuration; // Set the time when the stun ends
-                isStunned = true; // Start stun
+                if (other.gameObject.CompareTag("Environment"))
+                {
+                        // If the boar collides with the environment and it's not already stunned
+                        rb2d.velocity = Vector2.zero;
+                        stunEndTime = Time.time + stunDuration; // Set the time when the stun ends
+                        isStunned = true; // Start stun
+                        currentSpeed = initialSpeed;
+                }
+                else if (other.gameObject.CompareTag("Player"))
+                {
+                        player.GetComponent<Player>().TakeDamage();
+                }
         }
+        
+        
 }
     

@@ -6,8 +6,6 @@ using UnityEngine;
 public class HeartPickup : MonoBehaviour
 {
     private int _value = 1;
-
-    private BoxCollider2D collider;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +18,17 @@ public class HeartPickup : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     Debug.Log("Hit the Heart's box");
+    //     if (other.gameObject.CompareTag("Player"))
+    //     {
+    //         FindObjectOfType<Player>().Heal(_value);
+    //         Destroy(gameObject);
+    //     }
+    // }
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Hit the Heart's box");
         if (other.gameObject.CompareTag("Player"))
@@ -29,5 +37,4 @@ public class HeartPickup : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }
