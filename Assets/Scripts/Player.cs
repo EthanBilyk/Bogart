@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private BoxCollider2D collider;
     
     [SerializeField] private float moveSpeed = 7f;
+    private float initialMoveSpeed;
     private Vector2 movement;
     public GameObject gameOverCanvas;
     
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
         AttachWeaponToHand();
         gameOverCanvas = GetComponentInChildren<GameObject>();
         gameOverCanvas.SetActive(false);
+        initialMoveSpeed = moveSpeed;
     }
     
     void AttachWeaponToHand()
@@ -165,6 +167,7 @@ public class Player : MonoBehaviour
     public void SetMoveSpeed(float moveSpeed)
     {
         this.moveSpeed = moveSpeed;
+        initialMoveSpeed = moveSpeed;
     }
 
     public void AddMoveSPeed(float add)
@@ -265,5 +268,7 @@ public class Player : MonoBehaviour
     {
         isAlive = alive;
     }
+    
+    
     
 }

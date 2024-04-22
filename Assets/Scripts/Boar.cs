@@ -13,7 +13,6 @@ public class Boar : Enemy
         [SerializeField] private Collider2D collider;
         private Vector2 chargeDirection; // Direction of the charge attack
         private bool isCharging = false; // Flag to indicate if the boar is currently charging
-        private Transform player; // Reference to the player's transform
         private float attackRange = 15f;
         private float stunTime;
         private bool isStunned;

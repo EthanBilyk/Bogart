@@ -5,10 +5,11 @@ public class Enemy : MonoBehaviour
 {
     // Common properties for all enemies
     protected float hitPoints;
-    protected GameObject player;
     protected float armor;
     protected bool isAlive;
     protected Vector2 spawnLocation;
+    
+    protected Transform player; // Reference to the player's transform
     
 
     // Common methods for all enemies
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
     {
         // Initialization code common to all enemies
         isAlive = true;
+        
     }
 
     protected void Update()
