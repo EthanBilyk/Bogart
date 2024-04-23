@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -68,6 +69,16 @@ public class EnemyProjectile : MonoBehaviour
             Player playerScript = player.GetComponent<Player>();
             playerScript.TakeDamage();
             Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Environment"))
+        {
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            
         }
     }
 }
