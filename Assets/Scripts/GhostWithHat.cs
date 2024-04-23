@@ -70,7 +70,7 @@ public class GhostWithHat : Enemy
                     Time.fixedDeltaTime * movementSpeed);
             }
 
-            if (distanceToPlayer < fireballRange && Time.time - lastCastTime > fireballCooldown)
+            if (distanceToPlayer < fireballRange && Time.time - lastCastTime > fireballCooldown && fireballPrefab != null)
             {
                 castFireball(directionToPlayer.normalized);
             }

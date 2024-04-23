@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: c2e0b8149f4a4924e9d99b895bb85f6f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - leftWallPrefab: {fileID: 2086414085006175539, guid: c7bb18fde18136c419d4d71b67f483a2, type: 3}
+  - rightWallPrefab: {fileID: 2086414085006175539, guid: 47e2062084b9cf44b9c312748781e175, type: 3}
+  - bottomWallPrefab: {fileID: 2086414085006175539, guid: 005748bb957917d4dbae88ca7ed2a40a, type: 3}
+  - topWallPrefab: {fileID: 2086414085006175539, guid: d5f2f34cbbf44994e898d5c899fd132f, type: 3}
+  - leftDoorPrefab: {fileID: 4132917205258523915, guid: d3c5f7ca3b46c2547be69f54ed70e519, type: 3}
+  - rightDoorPrefab: {fileID: 4132917205258523915, guid: cdc98d2036afa354ebb85870f53d3ad7, type: 3}
+  - bottomDoorPrefab: {fileID: 4132917205258523915, guid: 85c5e67e6e473f04797dc922c6c414ac, type: 3}
+  - topDoorPrefab: {fileID: 4132917205258523915, guid: 93806250fe5e1c24f9beeccb3e295ad9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
