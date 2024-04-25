@@ -25,7 +25,7 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         // You can add any necessary update logic here
-        if (hp != player.GetHealth())
+        if (hp != player.GetMaxHealth())
         {
             DisplayHP();
         }

@@ -726,7 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b487e77a5b745419d59e503bdee91a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 10
   gameOverCanvas: {fileID: 6327792716580621929}
   hitPoints: 2
   maxHitPoints: 3
@@ -795,8 +795,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.1}
-  m_Size: {x: 0.6, y: 1.2}
+  m_Offset: {x: -0.0038576524, y: 0.08585565}
+  m_Size: {x: 0.6745802, y: 1.228289}
   m_Direction: 0
 --- !u!1 &5018283645193568691
 GameObject:

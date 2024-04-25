@@ -221,6 +221,7 @@ public class Player : MonoBehaviour
     public void increaseHP(int hp)
     {
         maxHitPoints += hp;
+        Heal(hp);
         Debug.Log("You increased your max HP and are now at " + maxHitPoints + " HP.");
     }
 

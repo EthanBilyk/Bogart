@@ -38,6 +38,9 @@ public class RoomManagement : MonoBehaviour
             Congrats();
         else
         {
+            //need to play an animation of the player going to the new floor
+            // playAnimation();
+            
             //reconstruct rooms and add enemies depending on floorNum
             roomPositions = new bool[roomAmount,roomAmount];
             SetArrayFalse();
@@ -61,13 +64,6 @@ public class RoomManagement : MonoBehaviour
                 roomPositions[i, j] = false;
             }
         }
-        for (int i = 0; i < roomPositions.GetLength(0); i++)
-        {
-            for (int j = 0; j < roomPositions.GetLength(1); j++)
-            {
-                roomPositions[i, j] = false;
-            }
-        }
     }
 
     private void GenerateRoomPlacement()
@@ -83,14 +79,14 @@ public class RoomManagement : MonoBehaviour
         for (int i = 0; i < roomAmount;)
         {
             int direction;
-            if (previousDirection == -1 || Random.Range(0, 100) < 50)
+            if (previousDirection == -1 || Random.Range(0, 100) < 60)
             {
-                // 50% chance to change direction
+                // 60% chance to change direction
                 direction = Random.Range(0, 4); // Choose a new random direction
             }
             else
             {
-                direction = previousDirection; // 50% chance to continue in the same direction
+                direction = previousDirection; // 40% chance to continue in the same direction
             }
 
             // Calculate new position based on direction
@@ -115,7 +111,8 @@ public class RoomManagement : MonoBehaviour
             if (newX >= 0 && newX < roomPositions.GetLength(0) && newY >= 0 && newY < roomPositions.GetLength(1) &&
                 !roomPositions[newX, newY])
             {
-                if (CanConnectToExistingRoom(newX, newY))
+                // make sure room doesnt have connections on all sides
+                if (CanConnectToExistingRoom(newX, newY) < 4)
                 {
                     roomPositions[newX, newY] = true;
                     Debug.Log($"Generating room position {i + 1} at coordinate: {newX}, {newY}");
@@ -132,8 +129,26 @@ public class RoomManagement : MonoBehaviour
         }
     }
     
-    private bool CanConnectToExistingRoom(int x, int y) {
-        return (x > 0 && roomPositions[x - 1, y]) || (x < roomPositions.GetLength(0) - 1 && roomPositions[x + 1, y]) ||
-               (y > 0 && roomPositions[x, y - 1]) || (y < roomPositions.GetLength(1) - 1 && roomPositions[x, y + 1]);
+    // count surrounding rooms
+    private int CanConnectToExistingRoom(int x, int y)
+    {
+        int numConnected = 0;
+        if ((x > 0 && roomPositions[x - 1, y]))
+        {
+            numConnected++;
+        }
+        if ((x < roomPositions.GetLength(0) - 1 && roomPositions[x + 1, y]))
+        {
+            numConnected++;
+        }
+        if ((y > 0 && roomPositions[x, y - 1]) )
+        {
+            numConnected++;
+        } 
+        if ((y < roomPositions.GetLength(1) - 1 && roomPositions[x, y + 1]))
+        {
+            numConnected++;
+        }
+        return numConnected;
     }
 }

@@ -24,6 +24,8 @@ public class RoomCreator : MonoBehaviour
     public float roomSpacing = 30f;
     private RoomManagement manager;
     private GameObject[] rooms;
+    private GameObject[,] floorWallDoorPrefabs;
+    private GameObject[,] floorEnemyPrefabs;
 
     private void Start()
     {
@@ -57,6 +59,8 @@ public class RoomCreator : MonoBehaviour
                     List<int> directions = checkDoors(roomPositions, x, y);
                     roomPlacementY = roomSpacing*y + roomSizeY*y;
                     roomPlacementX = roomSpacing*x + roomSizeX*x;
+                    
+                    //place wall unless the room has a door on it
                     for (int i = 0; i < roomSizeX; i++)
                         for (int j = 0; j < roomSizeY; j++)
                         {
@@ -135,6 +139,8 @@ public class RoomCreator : MonoBehaviour
     
     private List<int> checkDoors(bool[,] roomPositions, int x, int y)
     {
+        
+        //check directions of surrounding rooms
         List<int> directions = new List<int>();
         if (x > 0 && roomPositions[x - 1, y]) directions.Add(0); // left
         if (x < roomPositions.GetLength(0) - 1 && roomPositions[x + 1, y]) directions.Add(1); // right
