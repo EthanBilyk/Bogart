@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3250784585741153150}
   - component: {fileID: 7753078356496851272}
   - component: {fileID: 5747055507284102989}
+  - component: {fileID: 1117436617997160950}
   m_Layer: 0
   m_Name: bottomDoor
   m_TagString: Untagged
@@ -158,3 +159,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.95, y: 0.95}
   m_EdgeRadius: 0
+--- !u!114 &1117436617997160950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4132917205258523915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f918ccd13967f48a143d676b5de12f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocked: 1
