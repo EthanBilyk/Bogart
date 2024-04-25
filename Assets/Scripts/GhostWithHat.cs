@@ -80,6 +80,7 @@ public class GhostWithHat : Enemy
     private void castFireball(Vector2 direction)
     {
         GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+        fireball.transform.localScale.Set(6f,6f,0f);
         Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
         rb.velocity = direction * fireballSpeed; // Set velocity towards the player
         lastCastTime = Time.time;

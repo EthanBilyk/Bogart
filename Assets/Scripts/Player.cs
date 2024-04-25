@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rigidBody2D;
-    private BoxCollider2D collider;
+    private CapsuleCollider2D collider;
     
     [SerializeField] private float moveSpeed = 7f;
     private float initialMoveSpeed;
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
+        collider = GetComponent<CapsuleCollider2D>();
         // Instantiate the pistol and attach it to the hand
         AttachWeaponToHand();
         gameOverCanvas = GetComponentInChildren<GameObject>();

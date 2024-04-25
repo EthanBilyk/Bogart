@@ -154,10 +154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c1e30b759eb1841975049fdaf3974c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomSizeX: 21
-  roomSizeY: 21
-  maxRooms: 10
+  roomSizeX: 45
+  roomSizeY: 45
+  maxRooms: 11
   minRooms: 6
+  roomSpacing: 20
   player: {fileID: 4068425626436448912, guid: 1600169302415434d9eaa05438589a27, type: 3}
 --- !u!4 &1274951473
 Transform:
@@ -194,6 +195,10 @@ MonoBehaviour:
   rightDoorPrefab: {fileID: 4132917205258523915, guid: cdc98d2036afa354ebb85870f53d3ad7, type: 3}
   bottomDoorPrefab: {fileID: 4132917205258523915, guid: 85c5e67e6e473f04797dc922c6c414ac, type: 3}
   topDoorPrefab: {fileID: 4132917205258523915, guid: 93806250fe5e1c24f9beeccb3e295ad9, type: 3}
+  tavernPrefab: {fileID: 0}
+  challegeRoom1Prefab: {fileID: 0}
+  eventRoom1Prefab: {fileID: 0}
+  itemRoom1Prefab: {fileID: 0}
 --- !u!114 &1274951475
 MonoBehaviour:
   m_ObjectHideFlags: 0

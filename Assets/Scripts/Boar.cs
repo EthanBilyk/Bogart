@@ -109,7 +109,7 @@ public class Boar : Enemy
         {
                 if (other.gameObject.CompareTag("Environment"))
                 {
-                        // If the boar collides with the environment and it's not already stunned
+                        // If the boar collides with the environment, and it's not already stunned
                         rb2d.velocity = Vector2.zero;
                         stunEndTime = Time.time + stunDuration; // Set the time when the stun ends
                         isStunned = true; // Start stun
