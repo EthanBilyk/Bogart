@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int hitPoints = 2;
     [SerializeField] private int maxHitPoints = 3;
 
-    [SerializeField] private int armor = 0;
+    [SerializeField] private int armor;
     private bool isAlive = true;
     private bool isPaused;
     public Transform hand; // Reference to the hand GameObject where the pistol will be held
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float handOffsetAngle;
     [SerializeField] private float handRadius;
     
-    private bool isInvincible = false; // Flag to indicate if the player is currently invincible
+    private bool isInvincible; // Flag to indicate if the player is currently invincible
     private float invincibilityDuration = 1f; // Duration of invincibility frames in seconds
     private float invincibilityEndTime; // Time when invincibility frames end
 

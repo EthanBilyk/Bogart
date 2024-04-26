@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -30,7 +31,6 @@ public class RoomCreator : MonoBehaviour
     private void Start()
     {
         manager = FindObjectOfType<RoomManagement>();
-        rooms = new GameObject[manager.roomAmount];
     }
 
     private void Update()
@@ -48,13 +48,18 @@ public class RoomCreator : MonoBehaviour
     public GameObject[] createRoom(bool[,] roomPositions)
     {
         float roomPlacementX;
+        rooms = new GameObject[roomPositions.GetLength(0)];
         float roomPlacementY;
+        int roomIndex = 0;
         for (int x = 0; x < roomPositions.GetLength(0); x++)
         {
             for (int y = 0; y < roomPositions.GetLength(1); y++)
             {
                 if (roomPositions[x, y])
                 {
+                    // Creating a new parent GameObject for the room
+                    GameObject room = new GameObject($"Room {roomIndex}");
+                    room.transform.position = new Vector3(roomSpacing * x, roomSpacing * y, 0);
                     // check for doors
                     List<int> directions = checkDoors(roomPositions, x, y);
                     roomPlacementY = roomSpacing*y + roomSizeY*y;
@@ -62,74 +67,89 @@ public class RoomCreator : MonoBehaviour
                     
                     //place wall unless the room has a door on it
                     for (int i = 0; i < roomSizeX; i++)
+                    {
                         for (int j = 0; j < roomSizeY; j++)
                         {
-                                if (i == 0 && j != roomSizeY/2)
-                                {
-                                    // Place left wall except for the middle where the door goes
-                                    Instantiate(leftWallPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                else if (directions.Contains(0) && i == 0)
-                                {
-                                    // Place left door at the middle of the left wall
-                                    Instantiate(leftDoorPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                else if (!directions.Contains(0) && i == 0)
-                                {
-                                    // Place left door at the middle of the left wall
-                                    Instantiate(leftWallPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                else if (j == 0 && i != roomSizeX / 2)
-                                {
-                                    // Place bottom wall except for the middle where the door goes
-                                    Instantiate(bottomWallPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                else if (directions.Contains(3) && j == 0)
-                                {
-                                    // Place bottom door at the middle of the bottom wall
-                                    Instantiate(bottomDoorPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                else if (!directions.Contains(3) && j == 0)
-                                {
-                                    // Place bottom door at the middle of the bottom wall
-                                    Instantiate(bottomWallPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                 else if (i == roomSizeX - 1 && j != roomSizeY / 2)
-                                {
-                                    // Place right wall except for the middle where the door goes
-                                    Instantiate(rightWallPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                else if (directions.Contains(1) && i == roomSizeX - 1)
-                                {
-                                     // Place right door at the middle of the right wall
-                                    Instantiate(rightDoorPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                else if (!directions.Contains(1) && i == roomSizeX - 1)
-                                {
-                                    // Place right door at the middle of the right wall
-                                    Instantiate(rightWallPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0),
-                                        Quaternion.identity);
-                                }
-                                else if (j == roomSizeY - 1 && i != roomSizeX / 2)
-                                {
-                                    // Place top wall except for the middle where the door goes
-                                    Instantiate(topWallPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                else if (directions.Contains(2) && j == roomSizeY - 1)
-                                {
-                                    // Place top door at the middle of the top wall
-                                    Instantiate(topDoorPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                else if (!directions.Contains(2) && j == roomSizeY - 1)
-                                {
-                                    // Place top door at the middle of the top wall
-                                    Instantiate(topWallPrefab, new Vector3(roomPlacementX + i, roomPlacementY + j, 0), Quaternion.identity);
-                                }
-                                else
-                                {
-                                    // Handle other cases or leave it empty if it's an interior part of the room
-                                }
+                            GameObject toInstantiate = null;
+                            if (i == 0 && j != roomSizeY / 2)
+                            {
+                                // Place left wall except for the middle where the door goes
+                                toInstantiate = leftWallPrefab;
+                            }
+                            else if (directions.Contains(0) && i == 0)
+                            {
+
+                                // Place left door at the middle of the left wall
+                                toInstantiate = leftDoorPrefab;
+                            }
+                            else if (!directions.Contains(0) && i == 0)
+                            {
+                                // Place left door at the middle of the left wall
+                                toInstantiate = leftWallPrefab;
+
+                            }
+                            else if (j == 0 && i != roomSizeX / 2)
+                            {
+                                // Place bottom wall except for the middle where the door goes
+                                toInstantiate = bottomWallPrefab;
+                            }
+                            else if (directions.Contains(3) && j == 0)
+                            {
+                                // Place bottom door at the middle of the bottom wall
+                                toInstantiate = bottomDoorPrefab;
+                            }
+                            else if (!directions.Contains(3) && j == 0)
+                            {
+                                // Place bottom door at the middle of the bottom wall
+                                toInstantiate = bottomWallPrefab;
+                            }
+                            else if (i == roomSizeX - 1 && j != roomSizeY / 2)
+                            {
+                                // Place right wall except for the middle where the door goes
+                                toInstantiate = rightWallPrefab;
+                            }
+                            else if (directions.Contains(1) && i == roomSizeX - 1)
+                            {
+                                // Place right door at the middle of the right wall
+                                toInstantiate = rightDoorPrefab;
+                            }
+                            else if (!directions.Contains(1) && i == roomSizeX - 1)
+                            {
+                                // Place right door at the middle of the right wall
+                                toInstantiate = rightWallPrefab;
+                            }
+                            else if (j == roomSizeY - 1 && i != roomSizeX / 2)
+                            {
+                                // Place top wall except for the middle where the door goes
+                                toInstantiate = topWallPrefab;
+                            }
+                            else if (directions.Contains(2) && j == roomSizeY - 1)
+                            {
+                                // Place top door at the middle of the top wall
+                                toInstantiate = topDoorPrefab;
+                            }
+                            else if (!directions.Contains(2) && j == roomSizeY - 1)
+                            {
+                                // Place top door at the middle of the top wall
+                                toInstantiate = topWallPrefab;
+                            }
+                            else
+                            {
+                                // Handle other cases or leave it empty if it's an interior part of the room
+                            }
+
+                            if (toInstantiate)
+                            {
+                                Vector3 position = new Vector3(roomPlacementX + i, roomPlacementY + j, 0);
+                                GameObject instance = Instantiate(toInstantiate, position, Quaternion.identity);
+                                instance.transform.SetParent(room.transform);
+                            }
+
                         }
+                    }
+                    Debug.Log($"Adding room {roomIndex}");
+                    rooms[roomIndex] = room;  // Assign the room to the array
+                    roomIndex++;  // Increment the index after adding the room
                 }
             }
         }

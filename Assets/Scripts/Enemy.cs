@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
     {
         if(!isAlive)
             Die();
+        if (!player)
+            player = FindObjectOfType<Player>().transform;
     }
 
     // Method to take damage (can be overridden by specific enemy types)
