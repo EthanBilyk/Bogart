@@ -7,49 +7,48 @@ using Update = UnityEngine.PlayerLoop.Update;
 
 public class PurpleSlime : Enemy
 {
-    public float jumpForce = 10f;
+    public float jumpForce = 1f;
     public float lastLandTime;
-    private float jumpCooldown = 2f;
+    private float jumpCooldown = 5f;
     private ParticleSystem system;
-    private Rigidbody rb2D;
-    private bool isGrounded;
+    private Rigidbody2D rb2D;
 
     private new void Start()
     {
-        isGrounded = true;
         base.Start();
         base.hitPoints = 140;
         if(!system)
-            system = GetComponent<ParticleSystem>();
+            system = GetComponentInChildren<ParticleSystem>();
         if (!rb2D)
-            rb2D = GetComponent<Rigidbody>();
+            rb2D = GetComponent<Rigidbody2D>();
     }
 
     private new void Update()
     {
         base.Update();
-        IsGrounded();
     }
 
-    void FixedUpdate() {
-        Vector3 direction = (player.position - transform.position);
-        direction.y = 0;  // Ignore the vertical difference when calculating direction
-        direction = direction.normalized;  // Normalize the horizontal direction
-
-        if (isGrounded && Time.time - lastLandTime > jumpCooldown) {
-            // Apply horizontal force along with a fixed upward force for jumping
-            rb2D.AddForce(new Vector2(direction.x, 1) * jumpForce, ForceMode.Impulse);
-        }
+    void FixedUpdate()
+    {
+        if (Time.time - lastLandTime > jumpCooldown)
+            Jump();
     }
-
-    void IsGrounded() {
-        Debug.Log($"{isGrounded}");
-        isGrounded =  Physics.Raycast(transform.position, -Vector3.up, 0.1f);
+    
+    public void Jump()
+    {
+            rb2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            lastLandTime = Time.time;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Player"))
             player.gameObject.GetComponent<Player>().TakeDamage();
+    }
+
+    IEnumerator jumpAttack()
+    {
+        
+        yield break;
     }
 }

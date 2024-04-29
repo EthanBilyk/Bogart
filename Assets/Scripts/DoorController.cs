@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+public class DoorController : RoomManagement
 { 
     [SerializeField] private bool isLocked = true;
     public void LockDoor() {
@@ -33,5 +34,43 @@ public class DoorController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        int x = 0;
+        int y = 0;
+        Debug.Log($"Player enetered {gameObject.name}'s trigger");
+        if (other.gameObject.CompareTag("Player") && !isLocked)
+        {
+            if (gameObject.name == "leftDoor(Clone)")
+            {
+                x = -1;
+            }
+            else if (gameObject.name == "rightDoor(Clone)")
+            {
+                
+            }
+            else if (gameObject.name == "topDoor(Clone)")
+            {
+                y = 1;
+            }
+            else if (gameObject.name == "bottomDoor(Clone)")
+            {
+                y = -1;
+            }
+        }
+        Debug.Log($"X: {x} \n Y: {y}");
+        travelToNextRoom(x,y);
+    }
+
+    public void travelToNextRoom(int x, int y)
+    {
+        
+    }
+
+    public bool searchForRoom()
+    {
+        return false;
     }
 }

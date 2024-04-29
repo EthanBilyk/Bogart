@@ -48,7 +48,7 @@ public class RoomCreator : MonoBehaviour
     public GameObject[] createRoom(bool[,] roomPositions)
     {
         float roomPlacementX;
-        rooms = new GameObject[roomPositions.GetLength(0)];
+        rooms = new GameObject[roomPositions.GetLength(0)+1];
         float roomPlacementY;
         int roomIndex = 0;
         for (int x = 0; x < roomPositions.GetLength(0); x++)

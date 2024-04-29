@@ -9,16 +9,16 @@ using Random = UnityEngine.Random;
 // this class will call the others to keep everything modular
 public class RoomManagement : MonoBehaviour
 {
-    [SerializeField] public int roomAmount = 11;
+    [SerializeField] public int roomAmount = 10;
     [SerializeField] public int floorNum;
     
     public bool[,] roomPositions;
     public int startXPos;
     public int startYPos;
     public RoomCreator creator;
-    private GameObject[] roomHolder;
+    public GameObject[] roomHolder;
     [SerializeField] private GameObject playerPrefab;
-    private GameObject player;
+    public GameObject player;
 
     private void Start()
     {
@@ -29,6 +29,11 @@ public class RoomManagement : MonoBehaviour
         creator = GetComponent<RoomCreator>();
         roomHolder = creator.createRoom(roomPositions);
         player = creator.SpawnPlayer(playerPrefab, roomAmount/2, roomAmount/2);
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void travelToNextFloor()
@@ -111,7 +116,7 @@ public class RoomManagement : MonoBehaviour
             if (newX >= 0 && newX < roomPositions.GetLength(0) && newY >= 0 && newY < roomPositions.GetLength(1) &&
                 !roomPositions[newX, newY])
             {
-                // make sure room doesnt have connections on all sides
+                // make sure room doesn't have connections on all sides
                 if (CanConnectToExistingRoom(newX, newY) < 4)
                 {
                     roomPositions[newX, newY] = true;
