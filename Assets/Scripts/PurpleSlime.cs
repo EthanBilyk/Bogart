@@ -30,8 +30,7 @@ public class PurpleSlime : Enemy
 
     void FixedUpdate()
     {
-        if (Time.time - lastLandTime > jumpCooldown)
-            Jump();
+        if (Time.time - lastLandTime > jumpCooldown){}
     }
     
     public void Jump()
@@ -44,6 +43,7 @@ public class PurpleSlime : Enemy
     {
         if(other.gameObject.CompareTag("Player"))
             player.gameObject.GetComponent<Player>().TakeDamage();
+            
     }
 
     IEnumerator jumpAttack()

@@ -68,11 +68,12 @@ public class Player : MonoBehaviour
         Weapon weaponScript = currentWeapon.GetComponent<Weapon>();
         weaponScript.AddPercentAttackSpeed(attackSpeed);
     }
-    
+
     void Aim()
     {
         // Calculate the angle to rotate the hand towards the mouse cursor
-        Vector3 directionToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+        Vector3 directionToMouse =
+            (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
         float angleToMouse = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
 
         // Rotate the hand towards the mouse cursor
@@ -81,6 +82,7 @@ public class Player : MonoBehaviour
         // Calculate the position of the hand around the player at a fixed distance
         float angleAroundPlayer = angleToMouse + handOffsetAngle; // Add an offset angle if needed
         Vector3 handPosition = transform.position + Quaternion.Euler(0, 0, angleAroundPlayer) * Vector3.right * handRadius;
+
         hand.position = handPosition;
     }
 
@@ -151,7 +153,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
         // If the player collides with something, stop their movement
         rigidBody2D.velocity = Vector2.zero;

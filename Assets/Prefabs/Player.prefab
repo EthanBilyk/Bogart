@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7808054299636179636}
   - component: {fileID: 6770254948456358208}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3253490613997036483}
   - component: {fileID: 2868814236812289049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hand
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2300835642280575157}
   - component: {fileID: 7368659656593866449}
   - component: {fileID: 6352755464804860535}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: QuitToMainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 5750623171336939719}
   - component: {fileID: 3068069206711797194}
   - component: {fileID: 1235786396757039837}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 6646773420899260927}
   - component: {fileID: 3922243153343481729}
   - component: {fileID: 6414308663583536064}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 3612231563797564273}
   - component: {fileID: 8333351460835694970}
   - component: {fileID: 5785163479351807731}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 117077236505239283}
   - component: {fileID: 6761722321107431902}
   - component: {fileID: 1682895667288616894}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -775,7 +775,7 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -788,15 +788,15 @@ CapsuleCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 72
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0019287666, y: 0.06}
-  m_Size: {x: 0.30553922, y: 0.55628204}
+  m_Offset: {x: -0.0019287666, y: 0.0054833097}
+  m_Size: {x: 0.30553922, y: 0.5759871}
   m_Direction: 0
 --- !u!1 &5018283645193568691
 GameObject:
@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 3344605668978624636}
   - component: {fileID: 5533960936204579797}
   - component: {fileID: 5053842394972345137}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +944,7 @@ GameObject:
   - component: {fileID: 6055835794973712942}
   - component: {fileID: 2729801157676909613}
   - component: {fileID: 1690923883091222274}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: QuitGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,7 +1078,7 @@ GameObject:
   - component: {fileID: 5009274328874299935}
   - component: {fileID: 8579848542993961846}
   - component: {fileID: 6235329123173208009}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: DeathMenu
   m_TagString: DeathMenu
   m_Icon: {fileID: 0}
@@ -1196,7 +1196,7 @@ GameObject:
   - component: {fileID: 2407611462892747860}
   - component: {fileID: 1470706506595039776}
   - component: {fileID: 7836473419352218744}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4038070281527446061}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MenuObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1354,7 +1354,7 @@ GameObject:
   - component: {fileID: 846725886783878979}
   - component: {fileID: 1847063898431911340}
   - component: {fileID: 6761132785948385764}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: GameOverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1487,7 +1487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6122920354445913973}
   - component: {fileID: 4067007228950329698}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1538,7 +1538,7 @@ GameObject:
   - component: {fileID: 9198472688650127397}
   - component: {fileID: 5183104944967960965}
   - component: {fileID: 3843782218276025248}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}

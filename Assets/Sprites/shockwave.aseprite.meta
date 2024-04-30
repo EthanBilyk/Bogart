@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c9b1e299de761724fb05ba6d6aa0256e
+guid: 0a6f425466ff01d41aaa4494c4e6088c
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Bogart-Mk2
+  - name: shockwave
     originalName: 
-    pivot: {x: 0.5, y: -0.053571433}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 30
-      height: 56
-    spriteID: 9547328f4965d234d8c1847d83a720c6
+      width: 64
+      height: 64
+    spriteID: 211f22a0b33515f49ad24412a8cb0adb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,20 +144,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 2106706948
-    name: Bogart-Mk2
+    guid: 1886504045
+    name: shockwave
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Bogart-Mk2
+    - name: shockwave
       frameIndex: 0
       cellRect:
-        x: 17
-        y: 3
-        width: 30
-        height: 56
-      spriteId: 9547328f4965d234d8c1847d83a720c6
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      spriteId: 211f22a0b33515f49ad24412a8cb0adb
     linkedCells: []
     parentIndex: -1
   platformSettings: []
