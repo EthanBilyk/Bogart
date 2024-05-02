@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,14 +26,11 @@ public class Player : MonoBehaviour
     public GameObject weaponPrefab; // Reference to the weapon prefab
     private GameObject currentWeapon; // Reference to the currently held weapon
 
-    private float handOffsetDistance = 1.6f;
     public float weaponRadius = 1.6f; // Radius of the weapon rotation around the player
-    [SerializeField] private float handOffsetAngle;
-    [SerializeField] private float handRadius;
-    
     private bool isInvincible; // Flag to indicate if the player is currently invincible
     private float invincibilityDuration = 1f; // Duration of invincibility frames in seconds
     private float invincibilityEndTime; // Time when invincibility frames end
+    private bool isFlipped;
 
     // There may be a better way to set classes, need to think about this one
     // private int class = 0;
@@ -47,12 +45,13 @@ public class Player : MonoBehaviour
         gameOverCanvas = GetComponentInChildren<GameObject>();
         gameOverCanvas.SetActive(false);
         initialMoveSpeed = moveSpeed;
+        isFlipped = false;
     }
     
     void AttachWeaponToHand()
     {
         // Instantiate the pistol and attach it to the hand
-        currentWeapon = Instantiate(weaponPrefab, hand.position, hand.rotation, hand);
+        currentWeapon = Instantiate(weaponPrefab, hand.position, Quaternion.identity, hand);
         if (currentWeapon != null)
         {
             Debug.Log("Weapon attached to hand successfully!");
@@ -72,18 +71,52 @@ public class Player : MonoBehaviour
     void Aim()
     {
         // Calculate the angle to rotate the hand towards the mouse cursor
-        Vector3 directionToMouse =
-            (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+        Vector3 directionToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
         float angleToMouse = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
 
-        // Rotate the hand towards the mouse cursor
-        hand.rotation = Quaternion.Euler(0, 0, angleToMouse);
+        // Check if the sprite needs flipping
+        bool shouldFlip = (directionToMouse.x < 0 && !isFlipped) || (directionToMouse.x > 0 && isFlipped);
+        if (!shouldFlip)
+        {
+            Flip();
+        }
 
-        // Calculate the position of the hand around the player at a fixed distance
-        float angleAroundPlayer = angleToMouse + handOffsetAngle; // Add an offset angle if needed
-        Vector3 handPosition = transform.position + Quaternion.Euler(0, 0, angleAroundPlayer) * Vector3.right * handRadius;
+        // Adjust angle based on the orientation of the player sprite
+        if (isFlipped)
+        {
+            // If the player is flipped to the right (but sprite faces left by default), adjust the angle
+            angleToMouse -= 180f;
+        }
 
-        hand.position = handPosition;
+        // Rotate the hand towards the mouse cursor, considering the adjusted angle
+        currentWeapon.transform.rotation = Quaternion.Euler(0, 0, angleToMouse);
+    }
+
+
+    private void Flip()
+    {
+        // Toggle the flipped state
+        isFlipped = !isFlipped;
+
+        // Flip the player
+        Vector3 playerScale = transform.localScale;
+        playerScale.x *= -1;
+        transform.localScale = playerScale;
+        SpriteRenderer weapon = currentWeapon.GetComponent<SpriteRenderer>();
+        weapon.flipX = !isFlipped;
+
+        // Ensure the weapon flips along with the player, maintaining its upright orientation
+        if (currentWeapon != null)
+        {
+            Vector3 weaponScale = currentWeapon.transform.localScale;
+            // Only flip the x-axis to match the player's facing direction
+            weaponScale.x = Mathf.Abs(weaponScale.x) * Mathf.Sign(transform.localScale.x); 
+            currentWeapon.transform.localScale = weaponScale;
+
+            // If flipping makes the weapon upside-down, correct the y-scale to always be positive
+            weaponScale.y = Mathf.Abs(weaponScale.y); // Ensure y-scale is always positive
+            currentWeapon.transform.localScale = weaponScale;
+        }
     }
 
 
@@ -92,7 +125,6 @@ public class Player : MonoBehaviour
     {
         // Move the player
         rigidBody2D.velocity = movePlayer() * moveSpeed;
-        hand.position = new Vector3(rigidBody2D.position.x - 0.6f, rigidBody2D.position.y, 0);
         
         // Aim the pistol towards the mouse cursor
         Aim();

@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorController : RoomManagement
+public class DoorController : MonoBehaviour
 { 
     [SerializeField] private bool isLocked = true;
+    private Vector2 index;
+    private RoomManagement manager;
+    private Player player;
+    private float roomSpacing;
     public void LockDoor() {
         isLocked = true;
         // You might want to disable interactions or show the door as locked visually.
@@ -27,13 +31,20 @@ public class DoorController : RoomManagement
     // Start is called before the first frame update
     void Start()
     {
+        isLocked = false;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!player)
+            player = FindObjectOfType<Player>();
+        if (!manager)
+        {
+           manager = FindObjectOfType<RoomManagement>();
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -49,7 +60,7 @@ public class DoorController : RoomManagement
             }
             else if (gameObject.name == "rightDoor(Clone)")
             {
-                
+                x = 1;
             }
             else if (gameObject.name == "topDoor(Clone)")
             {
@@ -64,9 +75,17 @@ public class DoorController : RoomManagement
         travelToNextRoom(x,y);
     }
 
-    public void travelToNextRoom(int x, int y)
+    public void travelToNextRoom(float x, float y)
     {
-        
+        if (!isLocked)
+        {
+            Vector3 current = player.transform.position;
+            Vector3 destination = new Vector3(
+                current.x + (x * manager.roomSpacing),
+                current.y + (y * manager.roomSpacing),
+                0);
+            player.transform.position = destination;
+        }
     }
 
     public bool searchForRoom()

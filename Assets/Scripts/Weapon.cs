@@ -4,6 +4,7 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] public GameObject projectilePrefab;
     [SerializeField] public float cooldownTime = 0.5f;
+    [SerializeField] public GameObject bulletSpawn;
     private float lastShootTime;
 
     private void Update()
@@ -18,7 +19,8 @@ public class Weapon : MonoBehaviour
     public void Shoot(Vector3 targetPosition)
     {
         // Instantiate the projectile at the weapon's position and rotation
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, bulletSpawn.transform.position, transform.rotation);
+        projectile.transform.rotation = new Quaternion(transform.rotation.x * -1, transform.rotation.y * -1, transform.rotation.z * -1, 0);
 
         // Access the Projectile component of the instantiated projectile
         Projectile projectileComponent = projectile.GetComponent<Projectile>();

@@ -19,6 +19,8 @@ public class RoomManagement : MonoBehaviour
     public GameObject[] roomHolder;
     [SerializeField] private GameObject playerPrefab;
     public GameObject player;
+    public Vector2 currentRoomIndex;
+    public float roomSpacing;
 
     private void Start()
     {
@@ -29,11 +31,42 @@ public class RoomManagement : MonoBehaviour
         creator = GetComponent<RoomCreator>();
         roomHolder = creator.createRoom(roomPositions);
         player = creator.SpawnPlayer(playerPrefab, roomAmount/2, roomAmount/2);
+        currentRoomIndex = new Vector2(roomAmount/2, roomAmount/2);
+        roomSpacing = creator.roomSpacing + 2.85f;
+
     }
 
     private void Update()
     {
-        
+    }
+    
+    // RoomManagement.cs
+    public Vector3 GetDoorPosition(int doorEntered, Vector2 roomIndex)
+    {
+        RoomCreator roomCreator = GetComponent<RoomCreator>(); // Get the room creator component
+        if (roomCreator == null) return Vector3.zero;
+
+        float x = roomCreator.roomSpacing * roomIndex.x + roomCreator.roomSizeX * roomIndex.x + roomCreator.roomSizeX / 2;
+        float y = roomCreator.roomSpacing * roomIndex.y + roomCreator.roomSizeY * roomIndex.y + roomCreator.roomSizeY / 2;
+    
+        // Adjust position based on the door entered
+        switch (doorEntered)
+        {
+            case 0: // Left
+                x -= roomCreator.roomSizeX;
+                break;
+            case 1: // Right
+                x += roomCreator.roomSizeX;
+                break;
+            case 2: // Top
+                y += roomCreator.roomSizeY;
+                break;
+            case 3: // Bottom
+                y -= roomCreator.roomSizeY;
+                break;
+        }
+        Debug.Log("X: {x} \n Y: {y}");
+        return new Vector3(x, y, 0); // Assuming z is always 0
     }
 
     private void travelToNextFloor()
