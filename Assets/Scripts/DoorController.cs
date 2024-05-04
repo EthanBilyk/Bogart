@@ -31,7 +31,6 @@ public class DoorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isLocked = false;
         
     }
 
@@ -43,6 +42,12 @@ public class DoorController : MonoBehaviour
         if (!manager)
         {
            manager = FindObjectOfType<RoomManagement>();
+        }
+        if(isLocked)
+            GetComponent<SpriteRenderer>().color = Color.white;
+        else if(!isLocked)
+        {
+            GetComponent<SpriteRenderer>().color = Color.black;
         }
 
     }

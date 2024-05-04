@@ -25,15 +25,12 @@ public class SuccShroom : Enemy
         base.Start();
         hitPoints = 250f;
         isSuccing = false;
-        Debug.Log(hitPoints);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!player) 
-            player = GameObject.FindGameObjectWithTag("Player").transform;
-        
+        base.Update();   
         if (!isSuccing && Vector2.Distance(transform.position, player.position) <= wakeRange && Time.time - endSuccTime >= succCooldown)
         {
             isSuccing = true;

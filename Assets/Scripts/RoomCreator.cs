@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = System.Random;
 
 
 //this class is responsible for making the rooms and placing the doors to the other rooms
@@ -25,12 +26,15 @@ public class RoomCreator : MonoBehaviour
     public float roomSpacing = 30f;
     private RoomManagement manager;
     private GameObject[] rooms;
-    private GameObject[,] floorWallDoorPrefabs;
-    private GameObject[,] floorEnemyPrefabs;
+    [SerializeField] private GameObject[,] floorWallDoorPrefabs;
+    [SerializeField] private GameObject[] floorEnemyPrefabs;
+    public List<Vector2> roomCenters = new List<Vector2>();
+
 
     private void Start()
     {
         manager = FindObjectOfType<RoomManagement>();
+        
     }
 
     private void Update()
@@ -58,12 +62,15 @@ public class RoomCreator : MonoBehaviour
                 if (roomPositions[x, y])
                 {
                     // Creating a new parent GameObject for the room
-                    GameObject room = new GameObject($"Room {roomIndex}");
+                    GameObject room = new GameObject($"Room [{x}, {y}]");
                     room.transform.position = new Vector3(roomSpacing * x, roomSpacing * y, 0);
+                    Debug.Log($"Room Position: {room.transform.position}" );
                     // check for doors
                     List<int> directions = checkDoors(roomPositions, x, y);
                     roomPlacementY = roomSpacing*y + roomSizeY*y;
                     roomPlacementX = roomSpacing*x + roomSizeX*x;
+                    roomCenters.Add(new Vector2(roomPlacementX + roomSizeX/2, roomPlacementY + roomSizeY/2));
+
                     
                     //place wall unless the room has a door on it
                     for (int i = 0; i < roomSizeX; i++)
@@ -147,6 +154,7 @@ public class RoomCreator : MonoBehaviour
 
                         }
                     }
+                    SpawnEnemiesInRoom(room, roomIndex);
                     Debug.Log($"Adding room {roomIndex}");
                     rooms[roomIndex] = room;  // Assign the room to the array
                     roomIndex++;  // Increment the index after adding the room
@@ -156,6 +164,24 @@ public class RoomCreator : MonoBehaviour
         //list of rooms in an array
         return rooms;
     }
+
+    private void SpawnEnemiesInRoom(GameObject room, int roomIndex)
+    {
+        Vector2 spawnPoint = roomCenters[roomIndex];
+        Random rand = new Random();
+        int numEnemies = rand.Next(1, 5);
+        for (int i = 0; i < numEnemies; i++)
+        {
+            int enemy = rand.Next(0, floorEnemyPrefabs.GetLength(0)-1);
+            Vector2 spawnLocation = new Vector2(spawnPoint.x + rand.Next(-roomSizeX/2, roomSizeX/2),
+                spawnPoint.y + rand.Next(-roomSizeY/2, roomSizeY/2));
+        
+            Debug.Log($"Enemy Spawn Location: {spawnLocation}");
+            GameObject obj = Instantiate(floorEnemyPrefabs[enemy], spawnLocation, Quaternion.identity);
+            obj.transform.SetParent(room.transform);
+        }
+    }
+
     
     private List<int> checkDoors(bool[,] roomPositions, int x, int y)
     {

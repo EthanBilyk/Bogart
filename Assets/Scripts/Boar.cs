@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Boar : Enemy
 { 
-        private float initialSpeed = 20f; // Initial speed of the boar
-        private float maxSpeed = 200f; // Maximum speed of the boar
+        private float initialSpeed = 8f; // Initial speed of the boar
+        private float maxSpeed = 25f; // Maximum speed of the boar
         private float acceleration = 10f; // Acceleration rate of the boar
         private float currentSpeed; // Current speed of the boar
         [SerializeField] private Rigidbody2D rb2d;
@@ -29,14 +29,12 @@ public class Boar : Enemy
                 player = GameObject.FindGameObjectWithTag("Player").transform;
                 currentSpeed = initialSpeed;
                 isStunned = false;
+                isCharging = false;
         }
 
         private void Update()
         {
-                if(!player) 
-                        player = GameObject.FindGameObjectWithTag("Player").transform;
-                if (!isAlive)
-                        Die();
+                base.Update();
 
         }
 
@@ -65,6 +63,8 @@ public class Boar : Enemy
                                 chargeDirection = (player.position - transform.position).normalized;
                                 StartCharge();
                         }
+                        else if(distanceToPlayer > attackRange)
+                                rb2d.velocity = (player.position - transform.position).normalized * 4f;
                 }
 
                 
@@ -77,7 +77,6 @@ public class Boar : Enemy
                 {
                         // Gradually increase the speed until it reaches the maximum speed
                         currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
-                        Debug.Log("speed: " + currentSpeed);
 
                         // Move the boar in the charge direction with the current speed
                         rb2d.velocity = chargeDirection * currentSpeed;
@@ -107,6 +106,7 @@ public class Boar : Enemy
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+                Debug.Log(other.gameObject.tag + " entered trigger");
                 if (other.gameObject.CompareTag("Environment"))
                 {
                         // If the boar collides with the environment, and it's not already stunned
@@ -115,7 +115,7 @@ public class Boar : Enemy
                         isStunned = true; // Start stun
                         currentSpeed = initialSpeed;
                 }
-                else if (other.gameObject.CompareTag("Player"))
+                if (other.gameObject.CompareTag("Player"))
                 {
                         player.GetComponent<Player>().TakeDamage();
                 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2856062724316801737}
   m_Layer: 3
   m_Name: RightDoorBlocker
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 2136735047537926443}
   m_Layer: 3
   m_Name: RightDoor
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 3416625137355749944}
   m_Layer: 3
   m_Name: TopDoor
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 690426855289939179}
   m_Layer: 3
   m_Name: RightWall2
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1377,7 +1377,7 @@ GameObject:
   - component: {fileID: 7614269462590869498}
   m_Layer: 3
   m_Name: Doors
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   leftDoorBlocker: {fileID: 1801416776769659100}
   rightDoorBlocker: {fileID: 134606366021349905}
   roomPosition: {x: 0, y: 0, z: 0}
-  OnPlayerEnterRoom:
+  OnPlayerEnterDoor:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &5955146158087360238
@@ -1631,7 +1631,7 @@ GameObject:
   - component: {fileID: 4365171976379493469}
   m_Layer: 3
   m_Name: RightWall
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1788,7 +1788,7 @@ GameObject:
   - component: {fileID: 9144834752630437198}
   m_Layer: 3
   m_Name: BottomDoor
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2435,7 +2435,7 @@ GameObject:
   - component: {fileID: 461861155751274696}
   m_Layer: 3
   m_Name: LeftDoor
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

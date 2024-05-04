@@ -171,13 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f918ccd13967f48a143d676b5de12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomAmount: 10
-  floorNum: 0
-  startXPos: 0
-  startYPos: 0
-  creator: {fileID: 0}
-  roomHolder: []
-  playerPrefab: {fileID: 4068425626436448912, guid: 1600169302415434d9eaa05438589a27, type: 3}
-  player: {fileID: 0}
-  currentRoomIndex: {x: 0, y: 0}
   isLocked: 1

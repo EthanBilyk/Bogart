@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6085577067797474567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5747013725067942908}
+  - component: {fileID: 5186564858372587631}
+  - component: {fileID: 1667318828003315520}
+  m_Layer: 0
+  m_Name: RoomGeneration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5747013725067942908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6085577067797474567}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.236238, y: 14.514365, z: -3.1227884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5186564858372587631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6085577067797474567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c1e30b759eb1841975049fdaf3974c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomAmount: 4
+  floorNum: 1
+  startXPos: 0
+  startYPos: 0
+  creator: {fileID: 1667318828003315520}
+  roomHolder: []
+  playerPrefab: {fileID: 4068425626436448912, guid: 1600169302415434d9eaa05438589a27, type: 3}
+  player: {fileID: 0}
+  currentRoomIndex: {x: 0, y: 0}
+  roomSpacing: 0
+--- !u!114 &1667318828003315520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6085577067797474567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e0b8149f4a4924e9d99b895bb85f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftWallPrefab: {fileID: 2086414085006175539, guid: c7bb18fde18136c419d4d71b67f483a2, type: 3}
+  rightWallPrefab: {fileID: 2086414085006175539, guid: 47e2062084b9cf44b9c312748781e175, type: 3}
+  bottomWallPrefab: {fileID: 2086414085006175539, guid: 005748bb957917d4dbae88ca7ed2a40a, type: 3}
+  topWallPrefab: {fileID: 2086414085006175539, guid: d5f2f34cbbf44994e898d5c899fd132f, type: 3}
+  leftDoorPrefab: {fileID: 4132917205258523915, guid: d3c5f7ca3b46c2547be69f54ed70e519, type: 3}
+  rightDoorPrefab: {fileID: 4132917205258523915, guid: cdc98d2036afa354ebb85870f53d3ad7, type: 3}
+  bottomDoorPrefab: {fileID: 4132917205258523915, guid: 85c5e67e6e473f04797dc922c6c414ac, type: 3}
+  topDoorPrefab: {fileID: 4132917205258523915, guid: 93806250fe5e1c24f9beeccb3e295ad9, type: 3}
+  tavernPrefab: {fileID: 0}
+  challegeRoom1Prefab: {fileID: 0}
+  eventRoom1Prefab: {fileID: 0}
+  itemRoom1Prefab: {fileID: 0}
+  roomSizeX: 15
+  roomSizeY: 15
+  roomSpacing: 30
+  floorEnemyPrefabs:
+  - {fileID: 8974260850020563856, guid: 11a4bd2287ce4034f8e363e9a830f348, type: 3}
+  - {fileID: 8640640611909105761, guid: 60c8188ec2e95d2449e90559fa587efd, type: 3}
+  - {fileID: 4000901271245102489, guid: 0f96a93161d869d4c8af1b88e068779f, type: 3}
+  - {fileID: 1037155725386024393, guid: 21ac6d3c9f2f9e5498c52b1a02d8040d, type: 3}
